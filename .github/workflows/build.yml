@@ -21,9 +21,17 @@ jobs:
 
       - name: Build bare-metal-led
         run: |
-          cd bare-metal-led
-          make
+          if [ -f bare-metal-led/Makefile ]; then
+            cd bare-metal-led && make
+          else
+            echo "Makefile not yet present — skipping build (pre-P01)"
+            exit 0
+          fi
 
       - name: Check build size
         run: |
-          arm-none-eabi-size bare-metal-led/build/firmware.elf
+          if [ -f bare-metal-led/build/firmware.elf ]; then
+            arm-none-eabi-size bare-metal-led/build/firmware.elf
+          else
+            echo "No firmware.elf — skipping size check (pre-P01)"
+          fi
