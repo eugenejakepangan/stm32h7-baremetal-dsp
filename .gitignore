@@ -52,5 +52,7 @@ env/
 .DS_Store
 Thumbs.db
 
-# Local templates (never committed)
+# Local files (never committed)
 templates/
+private_notes.md
+
